@@ -1,0 +1,17 @@
+.listPizza{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border: 3px solid #2980b9;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

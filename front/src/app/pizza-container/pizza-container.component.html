@@ -1,0 +1,15 @@
+<div class="pizzaContainer">
+  
+  <p-dialog header="Ajouter une pizza" [(visible)]="display" modal="modal" width="500" [responsive]="true">
+    <app-form-pizza [forUpdate]=''></app-form-pizza>
+  </p-dialog>
+  <div class="header">
+    <div class=""></div>
+    <button pButton type="button" (click)="showDialog()" icon="fa-plus" label="Ajouter une pizza"></button>
+    <app-shop></app-shop>
+  </div>
+
+  <div class="listPizza">
+    <app-pizza *ngFor="let pizza of listPizza" [pizza]='pizza'></app-pizza>
+  </div>
+</div>

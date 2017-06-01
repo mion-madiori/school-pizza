@@ -1,0 +1,35 @@
+<form (ngSubmit)="register(pizzaForm.value)" #pizzaForm="ngForm" class="pizzaForm">
+  <input type="hidden" [(ngModel)]='setPizza._id' name='_id'/>
+  <div class="inputContainer name">
+    <label>Nom: </label>
+    <input name="name" [(ngModel)]='setPizza.name'/>
+  </div>
+  <div class="inputContainer price">
+    <label>Prix: </label>
+    <input name="price" [(ngModel)]='setPizza.price'/>
+  </div>
+  <div class="inputContainer ingred">
+    <label>Ingédients: </label>
+    <div class="ingredientsAvailable">
+      <div class="ul">
+        <div class="li" *ngFor="let ingredient of ingredients" (onDragStart)="dragStart($event,ingredient)" (onDragEnd)="dragEnd($event)" 
+        pDraggable="ingredients">
+          <img src="assets/img/{{ingredient}}.png" alt="{{ingredient}}" title="{{ingredient}}"/>
+          {{ingredient}}
+        </div>
+      </div>
+    </div>
+    <div class="ingredientsSelected" pDroppable="ingredients" (onDrop)="drop($event)">
+      <div class="ul">
+        <i class="fa fa-download fa-5x li" aria-hidden="true" *ngIf="selectedIngredients?.length == 0"></i>
+        <div class="li" *ngFor='let ingredient of selectedIngredients'>
+          <img src="assets/img/{{ingredient}}.png" alt="{{ingredient}}" title="{{ingredient}}"/>
+          {{ingredient}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button pButton type="submit" icon="fa-check" [label]="textButton" class="button"></button>
+
+</form>

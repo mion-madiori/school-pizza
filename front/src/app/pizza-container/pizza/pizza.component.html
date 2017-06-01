@@ -1,0 +1,14 @@
+<div class="pizza">
+  <div class="command">
+    <p-splitButton label="Commander" icon="fa-check" (onClick)="command()" [model]="items"></p-splitButton>
+  </div>
+  <h1>{{pizza.name}}</h1>
+  <h2>{{pizza.price}} €</h2>
+  <div class="ingredients">
+    <img src="assets/img/{{ing}}.png" *ngFor='let ing of pizza.ingredients' alt="ing" title="ing"/>
+  </div>
+
+  <p-dialog header="Ajouter une pizza" [(visible)]="display" modal="modal" width="500" [responsive]="true">
+    <app-form-pizza [forUpdate]='pizza'></app-form-pizza>
+  </p-dialog>
+</div>

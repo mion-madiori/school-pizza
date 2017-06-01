@@ -1,0 +1,39 @@
+<div class="shop" (click)="showDialog()">
+  <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+  <p>{{price}}€</p>
+  <div class=""></div>
+  <div class="count">
+    {{listPizza.length}}
+  </div>
+</div>
+
+<p-dialog header="Votre pannier" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+  <div class="pizza" *ngFor='let pizza of listPizza'>
+    <p>{{pizza.name}}</p>
+    <div class="priceAndButton">
+      <p>{{pizza.price}}€</p>
+      <button pButton type="button" (click)="removePizza(pizza)" icon="fa-trash" class='trash'></button>
+    </div>
+  </div>
+
+  <p class="total">Total: {{price}}€</p>
+
+  <div class="form">
+    <h3 class="first">Nom</h3>
+    <input id="firstname" type="text" size="20" pInputText [(ngModel)]="firstname">
+
+    <h3 class="first">Prénom</h3>
+    <input id="lastname" type="text" size="20" pInputText [(ngModel)]="lastname">
+
+    <h3 class="first">Numéro de téléphone</h3>
+    <input id="phone" type="text" size="10" pInputText [(ngModel)]="phone">
+  </div>
+  
+
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-check" (click)="validate()" label="Valider"></button>
+      <button type="button" pButton icon="fa-close" (click)="display=false" label="Annuler"></button>
+    </div>
+  </p-footer>
+</p-dialog>
