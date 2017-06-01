@@ -70,6 +70,7 @@ export class ShopComponent implements OnInit {
       this.firstname = '';
       this.lastname = '';
       this.phone = '';
+      this.price = 0;
     })
   }
 }
