@@ -8,6 +8,7 @@
     <label>Prix: </label>
     <input name="price" [(ngModel)]='setPizza.price'/>
   </div>
+
   <div class="inputContainer ingred">
     <label>Ingédients: </label>
     <div class="ingredientsAvailable">
@@ -19,11 +20,17 @@
         </div>
       </div>
     </div>
-    <div class="ingredientsSelected" pDroppable="ingredients" (onDrop)="drop($event)">
+
+    <label class="check">
+      Supprimer des ingrédients
+      <input type="checkbox" name='modify' [(ngModel)]="modify"/>
+    </label>
+
+    <div class="ingredientsSelected" pDroppable="ingredients" (onDrop)="drop($event)" [class.iconRemove]='modify'>
       <div class="ul">
         <i class="fa fa-download fa-5x li" aria-hidden="true" *ngIf="selectedIngredients?.length == 0"></i>
         <div class="li" *ngFor='let ingredient of selectedIngredients'>
-          <img src="assets/img/{{ingredient}}.png" alt="{{ingredient}}" title="{{ingredient}}"/>
+          <img src="assets/img/{{ingredient}}.png" alt="{{ingredient}}" title="{{ingredient}}" id="{{ingredient}}" (click)='remove($event)'/>
           {{ingredient}}
         </div>
       </div>

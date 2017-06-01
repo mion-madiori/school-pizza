@@ -22,8 +22,8 @@ import {ButtonModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {SplitButtonModule} from 'primeng/primeng';
 import {MenuModule, MenuItem} from 'primeng/primeng';
-import { ShopComponent } from './shop/shop.component';
-import { TabViewModule } from 'primeng/primeng';
+import {ShopComponent} from './shop/shop.component';
+import {TabViewModule} from 'primeng/primeng';
 
 
 @NgModule({

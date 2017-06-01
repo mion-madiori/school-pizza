@@ -14,6 +14,7 @@ export class FormPizzaComponent implements OnInit {
   ingredients: Array<String>;
   selectedIngredients: Array<String> = [];
   draggedIngredient: String;
+  modify:boolean = false;
 
   textButton:String;
 
@@ -100,6 +101,22 @@ export class FormPizzaComponent implements OnInit {
         this.eventService.setIsUpdate(true);
       });
     }
+  }
+
+  remove(e){
+    if(this.modify) {
+      this.selectedIngredients.forEach(ing => {
+        if(e.target.id === ing){
+            let index:number;
+            index = this.selectedIngredients.indexOf(ing);
+            this.selectedIngredients.splice(index, 1);
+          }
+      });
+    }
+  }
+
+  getModify():boolean{
+    return this.modify;
   }
 
 }
