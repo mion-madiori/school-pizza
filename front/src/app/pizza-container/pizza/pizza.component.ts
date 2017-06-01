@@ -17,8 +17,8 @@ export class PizzaComponent implements OnInit {
   display: boolean = false;
 
   constructor(
-    private httpService:HttpService,
-    private eventService:EventService
+    private httpService: HttpService,
+    private eventService: EventService
   ) { }
 
   ngOnInit() {
@@ -32,19 +32,19 @@ export class PizzaComponent implements OnInit {
     ];
   }
 
-  command(){
+  command() {
     this.eventService.setAddToCommand(this.pizza);
   }
 
-  update(){
+  update() {
     console.log('update');
     this.display = true;
   }
 
-  delete(){
+  delete() {
     this.httpService.deletePizza(this.pizza._id).then(res => {
       console.log('res: ', res);
       this.eventService.setIsUpdate(true);
-    })
+    });
   }
 }

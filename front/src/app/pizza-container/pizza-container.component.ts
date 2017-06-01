@@ -15,18 +15,18 @@ export class PizzaContainerComponent implements OnInit {
   display: boolean = false;
   listPizza: Array<Pizza>;
 
-  isUpdate:Subscription;
+  isUpdate: Subscription;
 
   constructor(
-    private httpService:HttpService,
-    private eventService:EventService
+    private httpService: HttpService,
+    private eventService: EventService
   ) {
     this.isUpdate = eventService.isUpdate$.subscribe(isUp => {
       if (isUp) {
         this.getAllPizzas();
         this.display = false;
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class PizzaContainerComponent implements OnInit {
       this.display = true;
   }
 
-  getAllPizzas(){
+  getAllPizzas() {
     this.httpService.getAllPizza().then(pizzas => {
       this.listPizza = pizzas;
     });

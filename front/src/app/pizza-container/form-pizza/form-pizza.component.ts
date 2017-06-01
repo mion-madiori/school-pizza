@@ -10,13 +10,13 @@ import { EventService } from '../../event.service';
 })
 export class FormPizzaComponent implements OnInit {
 
-  @Input() forUpdate:Pizza;
+  @Input() forUpdate: Pizza;
   ingredients: Array<String>;
   selectedIngredients: Array<String> = [];
   draggedIngredient: String;
-  modify:boolean = false;
+  modify: boolean = false;
 
-  textButton:String;
+  textButton: String;
 
   setPizza: Pizza;
 
@@ -47,7 +47,7 @@ export class FormPizzaComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.forUpdate) {
+    if (this.forUpdate) {
       this.textButton = 'Modifier';
       this.setPizza.name = this.forUpdate.name;
       this.setPizza._id = this.forUpdate._id;
@@ -69,12 +69,12 @@ export class FormPizzaComponent implements OnInit {
   }
 
   drop(event) {
-    if(this.draggedIngredient){
+    if (this.draggedIngredient) {
       this.selectedIngredients.push(this.draggedIngredient);
     }
   }
 
-  register(paramPizza){
+  register(paramPizza) {
 
     if (this.forUpdate) {
       const pizza: Pizza = {
@@ -101,13 +101,22 @@ export class FormPizzaComponent implements OnInit {
         this.eventService.setIsUpdate(true);
       });
     }
+
+    this.setPizza = {
+      name: '',
+      _id: '',
+      price: 0,
+      ingredients: []
+    };
+
+    this.selectedIngredients = [];
   }
 
-  remove(e){
-    if(this.modify) {
+  remove(e) {
+    if (this.modify) {
       this.selectedIngredients.forEach(ing => {
-        if(e.target.id === ing){
-            let index:number;
+        if (e.target.id === ing) {
+            let index: number;
             index = this.selectedIngredients.indexOf(ing);
             this.selectedIngredients.splice(index, 1);
           }
@@ -115,7 +124,7 @@ export class FormPizzaComponent implements OnInit {
     }
   }
 
-  getModify():boolean{
+  getModify(): boolean {
     return this.modify;
   }
 

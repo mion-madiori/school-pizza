@@ -1,6 +1,6 @@
-import { Pizza } from './pizza'
+import { Pizza } from './pizza';
 
-export interface Command{
+export interface Command {
     listPizza: Array<Pizza>;
     firstname: String;
     lastname: String;
