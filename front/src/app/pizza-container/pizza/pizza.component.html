@@ -2,10 +2,11 @@
   <div class="command">
     <p-splitButton label="Commander" icon="fa-check" (onClick)="command()" [model]="items"></p-splitButton>
   </div>
+  <img src="http://localhost:3000/uploadFile/{{pizza.image}}" alt='{{pizza.name}}' title='{{pizza.name}}' class="imgPizza"/>
   <h1>{{pizza.name}}</h1>
   <h2>{{pizza.price}} €</h2>
   <div class="ingredients">
-    <img src="assets/img/{{ing}}.png" *ngFor='let ing of pizza.ingredients' alt="ing" title="ing"/>
+    <img src="assets/img/{{ing}}.png" *ngFor='let ing of pizza.ingredients' alt="ing" title="ing" class="ing"/>
   </div>
 
   <p-dialog header="Ajouter une pizza" [(visible)]="display" modal="modal" width="500" [responsive]="true">

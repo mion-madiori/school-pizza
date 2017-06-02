@@ -3,14 +3,14 @@
 }
 
 .ingredientsAvailable{
-    border: 3px solid #3498db;
+    border: 3px dotted #3498db;
     border-radius: 5px;
     margin-bottom: 20px;
     cursor: grab;
 }
 
 .ingredientsSelected{
-    border: 3px solid #2ecc71;
+    border: 3px dotted #2ecc71;
     border-radius: 5px;
     min-height: 40px;
     padding: 10px;

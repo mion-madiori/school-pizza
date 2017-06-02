@@ -1,9 +1,12 @@
 let express = require('express');
 let app = express();
+const fileUpload = require('express-fileupload');
 let bodyParser = require("body-parser");
 let db = require("./db/mongo")
 let routes = require('./routes/index')
 
+app.use(express.static('public'));
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {

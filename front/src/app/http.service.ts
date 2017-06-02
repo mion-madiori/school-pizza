@@ -12,6 +12,7 @@ export class HttpService {
 
   private BASE_URI: string = 'http://localhost:3000/pizzas/';
   private BASE_COMMAND: string = 'http://localhost:3000/command/';
+  private BASE_UPLOAD: string = 'http://localhost:3000/upload/';
 
   constructor(
     private http: Http
@@ -31,23 +32,30 @@ export class HttpService {
               .toPromise();
   }
 
-  deletePizza(id:any):Promise<any>{
+  deletePizza(id: any): Promise<any>{
     return this.http
               .delete(this.BASE_URI + '' + id)
               .map(res => res.json())
               .toPromise();
   }
 
-  updatePizza(body:Pizza):Promise<any> {
+  updatePizza(body: Pizza): Promise<any> {
     return this.http
               .put(this.BASE_URI + '' + body._id, body)
               .map(res => res.json())
               .toPromise();
   }
 
-  validateCard(command: Command){
+  validateCard(command: Command): Promise<any>{
     return this.http
               .post(this.BASE_COMMAND, command)
+              .map(res => res.json())
+              .toPromise();
+  }
+
+  uploadImage(image: any): Promise<any>{
+    return this.http
+              .post(this.BASE_UPLOAD, image)
               .map(res => res.json())
               .toPromise();
   }

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var schema = mongoose.Schema({name: String, price: Number, ingredients: Array});
+var schema = mongoose.Schema({name: String, price: Number, ingredients: Array, image: String});
 var Values = mongoose.model('pizza', schema);
 
 let schemaCommand = mongoose.Schema({firstname: String, lastname: String, phone: String, listPizza: [schema]})

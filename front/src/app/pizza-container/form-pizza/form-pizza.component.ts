@@ -15,10 +15,13 @@ export class FormPizzaComponent implements OnInit {
   selectedIngredients: Array<String> = [];
   draggedIngredient: String;
   modify: boolean = false;
+  image:any;
 
   textButton: String;
 
   setPizza: Pizza;
+
+  chooseImage:Boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -26,7 +29,7 @@ export class FormPizzaComponent implements OnInit {
   ) {
     this.setPizza = {
       name: '',
-      _id: '',
+      _id: '',  
       price: 0,
       ingredients: []
     };
@@ -76,40 +79,44 @@ export class FormPizzaComponent implements OnInit {
 
   register(paramPizza) {
 
-    if (this.forUpdate) {
-      const pizza: Pizza = {
-        _id: paramPizza._id,
-        name: paramPizza.name,
-        price: paramPizza.price,
-        ingredients: this.selectedIngredients
+    if (!this.chooseImage) {
+      if (this.forUpdate) {
+        const pizza: Pizza = {
+          _id: paramPizza._id,
+          name: paramPizza.name,
+          price: paramPizza.price,
+          ingredients: this.selectedIngredients,
+          image: this.image
+        };
+
+        this.httpService.updatePizza(pizza).then(data => {
+          console.log('data: ', data);
+          this.eventService.setIsUpdate(true);
+        });
+
+      } else {
+        const pizza: Pizza = {
+          name: paramPizza.name,
+          price: paramPizza.price,
+          ingredients: this.selectedIngredients,
+          image: this.image
+        };
+
+        this.httpService.addPizza(pizza).then(data => {
+          console.log('data: ', data);
+          this.eventService.setIsUpdate(true);
+        });
+      }
+
+      this.setPizza = {
+        name: '',
+        _id: '',
+        price: 0,
+        ingredients: []
       };
 
-      this.httpService.updatePizza(pizza).then(data => {
-        console.log('data: ', data);
-        this.eventService.setIsUpdate(true);
-      });
-
-    } else {
-      const pizza: Pizza = {
-        name: paramPizza.name,
-        price: paramPizza.price,
-        ingredients: this.selectedIngredients
-      };
-
-      this.httpService.addPizza(pizza).then(data => {
-        console.log('data: ', data);
-        this.eventService.setIsUpdate(true);
-      });
+      this.selectedIngredients = [];
     }
-
-    this.setPizza = {
-      name: '',
-      _id: '',
-      price: 0,
-      ingredients: []
-    };
-
-    this.selectedIngredients = [];
   }
 
   remove(e) {
@@ -126,6 +133,17 @@ export class FormPizzaComponent implements OnInit {
 
   getModify(): boolean {
     return this.modify;
+  }
+
+  setImage(event){
+    for(let file of event.files) {
+      this.image = file.name;
+      this.chooseImage = false;
+    }
+  }
+
+  imageIsChoosed() {
+    this.chooseImage = true;
   }
 
 }

@@ -24,6 +24,7 @@ import {SplitButtonModule} from 'primeng/primeng';
 import {MenuModule, MenuItem} from 'primeng/primeng';
 import {ShopComponent} from './shop/shop.component';
 import {TabViewModule} from 'primeng/primeng';
+import {FileUploadModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {TabViewModule} from 'primeng/primeng';
     BrowserAnimationsModule,
     SplitButtonModule,
     MenuModule,
-    TabViewModule
+    TabViewModule,
+    FileUploadModule
   ],
   providers: [
     HttpService,
