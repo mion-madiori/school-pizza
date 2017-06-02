@@ -29,6 +29,10 @@ export class ShopComponent implements OnInit {
   lastname: String = '';
   phone: String = '';
 
+  alert:boolean = false;
+
+  timeout:any;
+
   constructor(
     private eventService: EventService,
     private httpService: HttpService
@@ -36,6 +40,8 @@ export class ShopComponent implements OnInit {
     this.addToCard = this.eventService.addToCommand$.subscribe(pizza => {
       this.listPizza.push(pizza);
       this.price += pizza.price;
+      clearTimeout(this.timeout);
+      this.isAlert();
     })
   }
 
@@ -47,15 +53,31 @@ export class ShopComponent implements OnInit {
   }
 
   removePizza(pizza:Pizza){
-    this.listPizza.forEach(thispizza => {
-      let index: number;
-      if(pizza === thispizza){
-        index = this.listPizza.indexOf(thispizza);
+
+    for (let i = 0; i < this.listPizza.length; i++){
+      if(pizza._id === this.listPizza[i]._id){
+        let index: number;
+        console.log('thispizza._id: ', this.listPizza[i]._id);
+        console.log('pizza._id: ', pizza._id);
+        index = this.listPizza.indexOf(pizza);
         this.price -= pizza.price;
         this.listPizza.splice(index, 1);
+        return
       }
-    })
-  }
+    }
+
+  //   this.listPizza.forEach(thispizza => {
+  //     if (pizza._id === thispizza._id) {
+  //       let index: number;
+  //       console.log('thispizza._id: ', thispizza._id);
+  //       console.log('pizza._id: ', pizza._id);
+  //       index = this.listPizza.indexOf(pizza);
+  //       this.price -= pizza.price;
+  //       this.listPizza.splice(index, 1);
+  //       return
+  //     }
+  //   })
+   }
 
   validate() {
     this.command.listPizza = this.listPizza;
@@ -72,5 +94,12 @@ export class ShopComponent implements OnInit {
       this.phone = '';
       this.price = 0;
     })
+  }
+
+  isAlert(){
+    this.alert = true;
+    this.timeout = setTimeout(() => {
+      this.alert = false;
+    }, 3000);
   }
 }

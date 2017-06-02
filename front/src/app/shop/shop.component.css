@@ -50,3 +50,7 @@
     height: 33px;
     margin-left: 5px;
 }
+
+.alert{
+    background-color: #e67e22;
+}

@@ -1,6 +1,5 @@
 let express = require('express');
 let app = express();
-let router = express.Router();
 let bodyParser = require("body-parser");
 let db = require("./db/mongo")
 let routes = require('./routes/index')
